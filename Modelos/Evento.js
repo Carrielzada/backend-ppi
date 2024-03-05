@@ -2,7 +2,7 @@
 //Em orientação a objetos uma classe possui métodos e atributos
 //Atributos são caracteristicas de um Objeto
 //Métodos são as ações que um objeto pode executar
-import EventoDAO from "../Persistencia/EventoDAO";
+import EventoDAO from "../Persistencia/EventoDAO.js";
 
 export default class Evento {
     //atributos são privados
@@ -16,13 +16,13 @@ export default class Evento {
     #preco;
     #ingressos;
 
-    constructor(codigo = 0, artista="", endereco="", cidade="", estado="", preco="", ingressos="") {
+    constructor(codigo=0, artista="", endereco="", cidade="", estado="", preco="", ingressos="") {
         this.#codigo = codigo;
-        this.#artista = artista
+        this.#artista = artista;
         this.#endereco= endereco;
         this.#cidade= cidade;
         this.#estado= estado;
-        this.#preco = preco
+        this.#preco = preco;
         this.#ingressos = ingressos;
     }
     
@@ -55,7 +55,7 @@ export default class Evento {
         return this.#estado;
     }
     set estado(novoEstado){
-        this.#endereco = novoEstado;
+        this.#estado = novoEstado;
     }
     get preco(){
         return this.#preco;
@@ -77,19 +77,31 @@ async gravar(){
     await dao.gravar(this); //this pode ser compreendido como a seguinte expressão: grave a mim mesmo
 
 }
-
 async atualizar(){
     const dao = new EventoDAO();
     await dao.atualizar(this); 
 }
-
 async excluir(){
     const dao = new EventoDAO();
     await dao.excluir(this);
 }
-
 async consultar(termoDePesquisa){
     const dao = new EventoDAO();
     return await dao.consultar(termoDePesquisa);
 }
+    //Override do método toString da classe pai Object
+    toString(){
+        return `Evento código: ${this.#codigo} - artista: ${this.#artista}`
+    }
+    toJson(){
+        return {
+            "codigo": this.#codigo,
+            "artista": this.#artista,
+            "endereco": this.#endereco,
+            "cidade": this.#cidade,
+            "estado": this.#estado,
+            "preco": this.#preco,
+            "ingressos": this.#ingressos,
+        }
+    }
 }
