@@ -23,9 +23,7 @@ export default class EventoDAO{
     async atualizar(evento){
         if (evento instanceof Evento){
             const conexao = await conectar();
-            const sql = `UPDATE Evento SET artista = ?,
-            endereco = ?, cidade = ?, estado = ?, preco = ?
-            ingressos = ? WHERE id = ?`
+            const sql = `UPDATE Evento SET artista = ?, endereco = ?, cidade = ?, estado = ?, preco = ?, ingressos = ? WHERE id = ?`;
         const parametros = [
             evento.artista,
             evento.endereco,

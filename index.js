@@ -11,9 +11,30 @@ const evento = new Evento(3, "Falling in Reverse", "'Rua Ibiuna, 98'", "Sorocaba
 //Então, em algum momento o método trará uma resposta e o nosso programa
 //Não saberá quando isso irá acontecer.
 
+
+//GRAVAR NOVO EVENTO!
+
+/*evento.gravar().then(() => {
+    console.log("Evento gravado com sucesso no banco de dados!");
+})
+.catch((erro) => {
+    console.error("Erro ao gravar evento:", erro.message);
+});*/
+
+//ATUALIZAR EVENTO JÁ EXISTENTE
+
 evento.atualizar()
 .then(() => {
     console.log("Evento atualizado com sucesso!");
 }).catch((erro) => {
     console.log("Erro ao atualizar evento:", erro.message);
 });
+
+//EXCLUIR EVENTO
+
+/*evento.excluir()
+.then(() => {
+    console.log("Evento excluído com sucesso!");
+}).catch((erro) => {
+    console.log("Erro ao excluir evento:", erro.message);
+});*/
