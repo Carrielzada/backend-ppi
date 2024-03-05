@@ -75,7 +75,6 @@ export default class Evento {
 async gravar(){
     const dao = new EventoDAO();
     await dao.gravar(this); //this pode ser compreendido como a seguinte expressão: grave a mim mesmo
-
 }
 async atualizar(){
     const dao = new EventoDAO();
