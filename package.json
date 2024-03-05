@@ -1,0 +1,30 @@
+{
+  "name": "backend-ppi",
+  "version": "1.0.0",
+  "description": "Backend da minha aplicação de cadastro de cliente",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Carrielzada/backend-ppi.git"
+  },
+  "keywords": [
+    "backend",
+    "aula",
+    "programação",
+    "internet"
+  ],
+  "author": "Vitor Carriel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Carrielzada/backend-ppi/issues"
+  },
+  "homepage": "https://github.com/Carrielzada/backend-ppi#readme",
+  "dependencies": {
+    "mysql2": "^3.9.2"
+  }
+}
