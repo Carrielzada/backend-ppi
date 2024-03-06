@@ -23,7 +23,9 @@ export default class EventoDAO{
     async atualizar(evento){
         if (evento instanceof Evento){
             const conexao = await conectar();
-            const sql = `UPDATE Evento SET artista = ?, endereco = ?, cidade = ?, estado = ?, preco = ?, ingressos = ? WHERE id = ?`;
+            const sql = `UPDATE Evento SET artista = ?, 
+            endereco = ?, cidade = ?, estado = ?, 
+            preco = ?, ingressos = ? WHERE id = ?`;
         const parametros = [
             evento.artista,
             evento.endereco,
@@ -56,9 +58,10 @@ export default class EventoDAO{
             termoDePesquisa = "";
         }
         let sql=""
-        if (isNaN(termoDePesquisa)){ //Termo de pesquisa não é número (isNaN = Is Not a Number)
-            return this.consultarPorNome(termoDePesquisa);     
-            sql = `SELECT * FROM evento WHERE nome LIKE '%?%'`;
+
+        if (isNaN(termoDePesquisa)){ //Termo de pesquisa não é número (isNaN = Is Not a Number)   
+            sql = `SELECT * FROM evento WHERE nome LIKE ?`;
+            termoDePesquisa= '%' + termoDePesquisa + '%';
         }
         else{
             sql = `SELECT  * FROM evento WHERE id = ?`;
@@ -78,7 +81,7 @@ export default class EventoDAO{
             registro.ingressos
         );
         listaEventos.push(evento);
-    }
+        }
         return listaEventos;
     }
 }

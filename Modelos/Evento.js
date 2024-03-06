@@ -92,7 +92,7 @@ async consultar(termoDePesquisa){
     toString(){
         return `Evento código: ${this.#codigo} - artista: ${this.#artista}`
     }
-    toJson(){
+    toJSON(){
         return {
             "codigo": this.#codigo,
             "artista": this.#artista,
