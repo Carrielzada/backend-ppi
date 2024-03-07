@@ -38,7 +38,7 @@ evento.excluir()
 }).catch((erro) => {
     console.log("Erro ao excluir evento:", erro.message);
 });
-*/
+
 //Consultar evento
 
 const eventoQQ = new Evento();
@@ -50,4 +50,4 @@ eventoQQ.consultar(2).then((listaEventos) => {
     }
 }).catch((erro) => {
     console.log("Não foi possível consultar o evento", erro);
-});
+});*/
