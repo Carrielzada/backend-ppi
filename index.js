@@ -1,53 +1,13 @@
-//Todas as linhas desse programa são executadas de forma síncrona
-//ou seja, de forma sequencial
+import rotaEvento from "./Rotas/rotaEvento.js";
+import express from  "express";
 
-import Evento from "./Modelos/Evento.js";
+const host = '0.0.0.0'; //IP genério que representa todas as interfaces (placas de rede)
+const porta = 3000; //Sempre utilize portas com valoor maior que 1024
 
-
-const evento = new Evento(8, "Renato", "'Rua Joaquim Pedroso'", "Presidente Prudente",
-    "SP", "R$ 100,00", "Restam 5");
-    
-//Nos métodos assíncronos é preciso manipular as promises  (Promessas)
-//Então, em algum momento o método trará uma resposta e o nosso programa
-//Não saberá quando isso irá acontecer.
-
-
-//GRAVAR NOVO EVENTO!
-/*
-evento.gravar().then(() => {
-    console.log("Evento gravado com sucesso no banco de dados!");
-})
-.catch((erro) => {
-    console.error("Erro ao gravar evento:", erro.message);
-});*/
-
-//ATUALIZAR EVENTO JÁ EXISTENTE
-/*
-evento.atualizar()
-.then(() => {
-    console.log("Evento atualizado com sucesso!");
-}).catch((erro) => {
-    console.log("Erro ao atualizar evento:", erro.message);
+const app = express();
+app.use(express.json()); //configurando o express para saber interpretar formato JSON
+app.use(express.urlencoded({extended: true})); //QS configurando o express para saber interpretar o formato URL utilizando a biblioteca QS
+app.use('/eventos', rotaEvento);
+app.listen(porta, host, () => {
+    console.log('Servidor rodando em http://${host}:${porta}');
 });
-
-//EXCLUIR EVENTO
-
-evento.excluir()
-.then(() => {
-    console.log("Evento excluído com sucesso!");
-}).catch((erro) => {
-    console.log("Erro ao excluir evento:", erro.message);
-});
-
-//Consultar evento
-
-const eventoQQ = new Evento();
-
-eventoQQ.consultar(2).then((listaEventos) => {
-    console.log("Eventos encontrados:")
-    for (const evento of listaEventos) {
-        console.log(evento.toJSON());
-    }
-}).catch((erro) => {
-    console.log("Não foi possível consultar o evento", erro);
-});*/

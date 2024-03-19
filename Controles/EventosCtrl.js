@@ -105,7 +105,7 @@ atualizar(requisicao, resposta); {
 
 excluir(requisicao, resposta);{
     resposta.type('application/json');
-    if (requisicao.method == "delete"){
+    if (requisicao.method == "DELETE"){
         //O Código do evento que será excluído será extraído da URL
         const codigo = requisicao.params.codigo;
         if (codigo && codigo > 0){
@@ -126,9 +126,46 @@ excluir(requisicao, resposta);{
                 })
             })
         }
+        else{
+            resposta.status(400);
+            resposta.json({
+                "status": false,
+                "mensagem": "Por favor, informe o código do evento que deseja excluir, conforme documentação da API."
+            })
+        }
+    }
+    else{
+        resposta.status(405);
+        resposta.json({
+            "status": false,
+            "mensagem": "Requisição inválida! Esperando o método DELETE para excluir o evento."
+        })
     }
 };
 
 consultar(requisicao, resposta);{
-
+    resposta.type('application/json');
+    if (requisicao.method === "GET"){
+        const termoDePesquisa = requisicao.params.termo;
+        const evento = new Evento(0);
+        evento.consultar(termoDePesquisa)
+        .then((eventos) =>{
+            resposta.status(200);
+            resposta.json(eventos);
+        })
+        .catch((erro) => {
+            resposta.status(500);
+            resposta.json({
+                "status": false,
+                "mensagem": "Não foi possível consultar os eventos! " + erro.message 
+            })
+        })
+    }
+    else{
+        resposta.status(405);
+        resposta.json({
+            "status": false,
+            "mensagem": "Requisição inválida! Esperando método GET para consultar os eventos."
+        })
+    }
 };
