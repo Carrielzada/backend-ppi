@@ -1,14 +1,20 @@
 import express from "express";
 import rotaEvento from "./Rotas/rotaEvento.js";
+<<<<<<< HEAD
 import cors from "cors";
+=======
+>>>>>>> f04cac5bfc4fff252974ec3a6419532c34ab1dc5
 
 const host = '0.0.0.0'; //IP genérico que representa todas as interfaces (placas de rede)
 const porta = 3000; //Sempre utilize portas com valor maior que 1024
 
 const app = express();
+<<<<<<< HEAD
 app.use(cors({
     origin: '*'//Permite acesso controlado a origens distintas de portas diferentes
 }));
+=======
+>>>>>>> f04cac5bfc4fff252974ec3a6419532c34ab1dc5
 app.use(express.json()); //configurando o express para saber interpretar o formato JSON
 app.use(express.urlencoded({ extended: true })); //configurando o express para saber interpretar o formato URL utilizando a biblioteca QueryString
 //app.use('/caminho', rotaCaminho);
