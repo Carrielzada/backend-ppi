@@ -59,7 +59,7 @@ export default class EventoDAO{
         }
         let sql=""
 
-        if (isNaN(termoDePesquisa)){ //Termo de pesquisa não é número (isNaN = Is Not a Number)   
+        if (isNaN(parseInt(termoDePesquisa))){ //Termo de pesquisa não é número (isNaN = Is Not a Number)   
             sql = `SELECT * FROM evento WHERE nome LIKE ?`;
             termoDePesquisa= '%' + termoDePesquisa + '%';
         }
@@ -83,5 +83,27 @@ export default class EventoDAO{
         listaEventos.push(evento);
         }
         return listaEventos;
+
     }
+
+    async consultar(){
+    var sql = "SELECT * FROM Evento";
+       const conexao = await conectar(); 
+       const [registros] = await conexao.execute(sql);
+
+       let listaEventos = [];
+       for (const registro of registros){
+           const evento = new Evento(
+                    registro.id,
+                    registro.artista,
+                    registro.endereco,
+                    registro.cidade,
+                    registro.estado,
+                    registro.preco,
+                    registro.ingressos
+           );
+           listaEventos.push(evento);
+       }
+       return listaEventos;
+   }
 }

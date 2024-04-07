@@ -1,7 +1,6 @@
 import express from "express";
 import rotaEvento from "./Rotas/rotaEvento.js";
 import cors from "cors";
-
 const host = '0.0.0.0'; //IP genérico que representa todas as interfaces (placas de rede)
 const porta = 3000; //Sempre utilize portas com valor maior que 1024
 
